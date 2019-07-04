@@ -1,0 +1,12 @@
+base-url:
+  host: https://www.debugcoin.com/mp/enclosure
+
+spring:
+  servlet:
+    multipart:
+      enabled: true
+      file-size-threshold: 1024KB
+      #location: /usr/mp/upload
+      location: D:/upload
+      max-file-size: 1024MB
+      max-request-size: 1024MB

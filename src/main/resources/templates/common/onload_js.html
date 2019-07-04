@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.w3.org/1999/xhtml">
+<body>
+<!--公共的JS-->
+<span th:fragment="onloadJS">
+    <script>
+       var pathName=top.window.document.location.pathname;
+       pathName=pathName.substring(0,pathName.substr(1).indexOf('/')+1);
+    </script>
+    <script th:src="@{/static/plugins/jquery.min.js}"></script>
+    <script th:src="@{/static/plugins/layer/layer.js}"></script>
+    <script th:src="@{/static/plugins/laydate/laydate.js}"></script>
+    <script th:src="@{/static/plugins/layui/layui.js}"></script>
+    <script th:src="@{/static/js/myLay.js}"></script>
+    <script th:src="@{/static/js/echarts.min.js}"></script>
+    <script th:src="@{/static/js/utils.js}"></script>
+    <script th:src="@{/static/js/app.js}"></script>
+    <script th:src="@{/static/js/mp.js}"></script>
+    <script th:src="@{/static/plugins/contextMenu/jquery.contextMenu.js}"></script>
+    <script th:src="@{/static/plugins/contextMenu/jquery.ui.position.js}"></script>
+</span>
+</body>
+</html>

@@ -1,0 +1,61 @@
+server:
+  port: 7788
+  error:
+    path: /404
+  servlet:
+    context-path: /layui
+
+spring:
+  http:
+    charset: UTF-8
+  profiles:
+    active: pro
+  devtools:
+    restart:
+      enabled: false
+  application:
+    name: shi_zhan_wang
+  datasource:
+    name: shi_zhan_wang
+    url: jdbc:mysql://59.36.174.16:3307/mini_market?characterEncoding=UTF-8&useUnicode=true&useSSL=false&allowMultiQueries=true&autoReconnect=true&failOverReadOnly=false
+    username: root
+    password: qtzx2017
+    driverClassName: com.mysql.cj.jdbc.Driver
+    hikari:
+      maximum-pool-size: 15
+  resources:
+    static-locations: classpath:/,/enclosure/**
+    chain:
+      cache: false
+  thymeleaf:
+    cache:  false
+    mode: LEGACYHTML5
+    encoding: UTF-8
+    servlet:
+      content-type: text/html
+  redis:
+    database: 0
+    host: 59.36.174.16
+    port: 6379
+    password: root!@#zhilian
+    jedis:
+      pool:
+        max-active: 8
+        max-idle: 8
+        min-idle: 0
+
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*.xml
+  typeAliasesPackage: com.zhilian.market.entity
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+    jdbc-type-for-null: 'null'
+
+
+logging:
+  path: /usr/mp/logs
+  level:
+    com.zhilian.market.mapper: debug
+
+

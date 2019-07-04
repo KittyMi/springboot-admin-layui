@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.w3.org/1999/xhtml">
+<!-- 引入公共的头部样式 -->
+<head th:include="common/common_head :: commonHeader('实战王小程序后台平台')"></head>
+
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin beg-layout-container">
+    <div class="layui-header beg-layui-header">
+        <div class="layout-side-toggle" style="margin-left: 20px"><i class="layui-icon layui-icon-shrink-right"></i> </div>
+        <ul class="layui-nav pull-right" style=" margin-top: 0px;height: 60px;margin-right: 225px">
+            <li class="layui-nav-item">
+                <a href="javascript:;">
+                    当前用户：
+                    <cite th:inline="text" id="headerName">[[${session.user_session_key==null?"匿名":session.user_session_key.account}]]([[${session.user_session_key==null?"":session.user_session_key.roleId==1?"超级管理员":"老师"}]])</cite>
+                </a>
+            </li>
+            <li class="layui-nav-item layui-hide-xs" >
+                <a href="javascript:;" id="FullScreen" >
+                    <i class="layui-icon layui-icon-screen-restore"></i>
+                    <cite>全屏</cite>
+                </a>
+            </li>
+            <li class="layui-nav-item">
+                <a href="javascript:;" class="lockcms">
+                    <i class="fa fa-lock"></i>
+                    <cite>锁屏</cite>
+                </a>
+            </li>
+            <li class="layui-nav-item">
+                <a href="javascript:;" onclick="App.logout();">
+                    <i class="fa fa-sign-out"></i>
+                    <cite>登出</cite>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="layui-side layui-bg-black">
+
+        <div class="layui-side-scroll">
+            <div class="layui-logo" style="box-shadow: 0 1px 2px 0 rgba(0,0,0,.15);background: #000;height: 60px;" >
+                <span>实战王</span>
+            </div>
+            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+            <ul class="layui-nav layui-nav-tree">
+                <li class="layui-nav-item layui-this">
+                    <a href="javascript:void(0);" data-type="tabAdd" lay-id="-1">
+                        <i class="layui-icon layui-icon-home"></i>
+                       <cite> 后台首页</cite>
+                    </a>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:void(0);"><i class="layui-icon">&#xe705;</i>&nbsp;&nbsp;xxx管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:void(0);" data-type="tabAdd" lay-id="2-1" data-url="/login"><i class="layui-icon">&#xe705;</i>&nbsp;用户登录</a></dd>
+                      <dd data-name="echarts" data-jump="" class="layui-nav-itemed">
+                            <a href="javascript:;">Echarts集成<span class="layui-nav-more"></span></a>
+                            <dl class="layui-nav-child">
+                                <dd data-name="line" data-jump=""> <a href="javascript:;" lay-href="senior/echarts/line">折线图</a> </dd>
+                                <dd data-name="bar" data-jump=""> <a href="javascript:;" lay-href="senior/echarts/bar">柱状图</a> </dd>
+                                <dd data-name="map" data-jump=""> <a href="javascript:;" lay-href="senior/echarts/map">地图</a> </dd>
+                            </dl>
+                        </dd>
+                    </dl>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+
+    <div class="layui-body" style="bottom: 0px">
+        <!-- 内容主体区域 layui-tab-card-->
+        <div class="layui-tab  layui-tab-brief" lay-allowClose="true" lay-filter="menu" style="margin: 0px 0;">
+            <ul class="layui-tab-title">
+                <li class="layui-this" id="homePage" lay-id="-1"><i class="layui-icon">&#xe665;</i>&nbsp;后台首页</li>
+            </ul>
+            <div class="layui-tab-content">
+                <div class="layui-tab-item layui-show">
+                    <p>欢迎使用实xxx后台！</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="layui-footer" style="z-index:9999;left: 220px" >
+        <!-- 底部固定区域 -->
+        <p>© 2018 <a th:href="@{/index}">xxx数据信息科技（广州）有限公司</a> <a href="http://www.miitbeian.gov.cn" target="_blank">粤ICP备18140675号</a></p>
+    </div>
+    <div class="admin-header-lock" id="lock-box" style="display: none;">
+        <div class="admin-header-lock-img"><img th:src="@{/static/favicon.ico}"></div>
+        <div class="admin-header-lock-name" id="lockUserName">请叫我<span th:inline="text">[[${session.user_session_key==null?"匿名":session.user_session_key.account}]]</span></div>
+        <div class="input_btn">
+            <input type="password" class="admin-header-lock-input layui-input" placeholder="请输入密码解锁.." name="lockPwd" id="lockPwd">
+            <button class="layui-btn" id="unlock">解锁</button>
+        </div>
+        <p>请输入“123456”，否则不会解锁成功哦！！！</p>
+    </div>
+</div>
+<div th:include="common/onload_js :: onloadJS"></div>
+
+<script>
+    layui.use(['layer'], function() {
+        var layer= layui.layer;
+
+
+        // 进入全屏：
+        layui.$("#FullScreen").click(function () {
+            entryFullScreen();
+        })
+        function entryFullScreen() {
+            var docE = document.documentElement;
+            if (docE.requestFullScreen) {
+                docE.requestFullScreen();
+            } else if (docE.mozRequestFullScreen) {
+                docE.mozRequestFullScreen();
+            } else if (docE.webkitRequestFullScreen) {
+                docE.webkitRequestFullScreen();
+            }
+        }
+
+
+
+    });
+</script>
+</body>
+</html>
