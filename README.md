@@ -1,2 +1,4 @@
 # springboot-admin-layui
-springBoot+MybatisPlus+layui后端模板
+后端框架 springBoot+MybatisPlus+redis
+
+前端框架 layui
