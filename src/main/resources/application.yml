@@ -35,9 +35,9 @@ spring:
       content-type: text/html
   redis:
     database: 0
-    host: 59.36.174.16
+    host: host
     port: 6379
-    password: root!@#zhilian
+    password: port
     jedis:
       pool:
         max-active: 8
