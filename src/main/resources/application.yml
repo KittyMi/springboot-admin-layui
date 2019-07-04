@@ -17,9 +17,9 @@ spring:
     name: shi_zhan_wang
   datasource:
     name: shi_zhan_wang
-    url: jdbc:mysql://59.36.174.16:3307/mini_market?characterEncoding=UTF-8&useUnicode=true&useSSL=false&allowMultiQueries=true&autoReconnect=true&failOverReadOnly=false
+    url: jdbc:mysql://127.0.0.1:3307/mini_market?characterEncoding=UTF-8&useUnicode=true&useSSL=false&allowMultiQueries=true&autoReconnect=true&failOverReadOnly=false
     username: root
-    password: qtzx2017
+    password: qtzx20171111
     driverClassName: com.mysql.cj.jdbc.Driver
     hikari:
       maximum-pool-size: 15
